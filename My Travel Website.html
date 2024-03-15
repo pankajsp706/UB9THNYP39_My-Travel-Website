@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Travel Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <style src = "My Travel Website.css"></style>
+    <style>
+        .navbar-nav .nav-link i {
+            margin-right: 5px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .flex-item {
+            width: calc(35% - 20px);
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .li-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .li-headline {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .li-paragraph {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .flex-item {
+                width: calc(33.33% - 20px);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .flex-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .flex-item {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .navbar-nav {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .navbar-brand {
+                margin-right: 15px;
+                /* Adjust margin between brand and elements */
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: 125px;
+                /* Adjust margin between elements */
+            }
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My Travel Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="#flight-section">
+                    <i class="fas fa-plane"></i>
+                    Flights
+                    <span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-link" href="#holiday-section">
+                    <i class="fas fa-suitcase"></i>
+                    Hotel & Holidays
+                </a>
+                <a class="nav-link" href="#train-section">
+                    <i class="fas fa-train"></i>
+                    Trains
+                </a>
+                <a class="nav-link" href="#cab-section">
+                    <i class="fas fa-car"></i>
+                    Cabs
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <section id="flight-section" class="section active">
+            <h2>Flight Search</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="source">Source</label>
+                        <input type="text" class="form-control" id="source" placeholder="Enter Source">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="destination">Destination</label>
+                        <input type="text" class="form-control" id="destination" placeholder="Enter Destination">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="date">Date of Trip</label>
+                        <input type="text" class="form-control datepicker" id="date" placeholder="Select Date">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search Flights</button>
+            </form>
+
+            <!-- Flight Section -->
+
+            <div id="Flight-page">
+                <div class="Plane-page ml-auto">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469085/Common-Desktop-TKS-11Mar_nzcsni.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Upto 50% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels & homestays, holidays, buses, cabs more for summer-tastic trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469229/DF-Desktop-TKS-11Mar_cxuo5k.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 15% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on Domestic Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469237/IF-Desktop-TKS-11Mar_z2fv7q.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 12% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on International Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469220/offer-11032024_i0ayyt.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Up to 35% OFF* + Additional Savings on EMI
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels and holiday packages for pocket-friendly travel bookings.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469212/airasia-116x116-05022024_xw34wu.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                LIVE NOW: Sale by AirAsia
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                with one-way fares from Bhubaneswar to Kuala Lumpur starting @ ₹4,999*.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469266/116X116-axis-29022024_vs4yfx.webp" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                FOR HASSLE-FREE TRIPS WITH MAX SAVINGS:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Grab Up to 15% OFF* + Additional Savings on EMI for flights and hotels.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710499826/116X116-virgin-atlantic-inaugral-13032024_hqojix.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                INTL FLIGHTS Up to ₹5000 OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on Virgin Atlantic inaugural flights from Bengaluru.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500036/Desktop-ArmedForces-28Nov_eawqpm.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                DOM FLIGHTS
+                                                Special Benefit for Students:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                FREE Date Change on Domestic Flights @ NO EXTRA COST. Code: MMTFDC.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="holiday-section" class="section">
+            <h2>Hotel & Holidays</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="hotel-search">Hotel Search</label>
+                        <input type="text" class="form-control" id="hotel-search" placeholder="Search for Hotels">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="hotel-date">Date of Stay</label>
+                        <input type="text" class="form-control datepicker" id="hotel-date" placeholder="Select Date">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search Hotels</button>
+            </form>
+
+
+            <!--Hotel Section-->
+
+            <div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-3 d-flex flex-column align-content-center">
+                            <p class="Paragraph-luxe">INTRODUCTION</p>
+                            <h1 class="headline-luxe">MMTLuxe<br /> Selections</h1>
+                            <p class="Paragraph-luxe-1">Escape to the epitome of luxury, packed with signature amenities and services</p>
+                            <button class="button-Luxe">Learn More</button>
+                        </div>
+                        <div class="col-12 col-lg-3 shadow bg-luxe">
+                            <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710486609/brands_uv5vkt.avif" class="image-luxe" />
+                            <h1 class="headline-luxe-1">Luxe properties in India</h1>
+                            <p class="Paragraph-luxe-2">Explore by Luxury brands, themes & top picks</p>
+                        </div>
+                        <div class="col-12 col-lg-3 shadow bg-luxe">
+                            <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710486600/luxe_villa_va4wym.avif" class="image-luxe" />
+                            <h1 class="headline-luxe-1">Luxe Villas</h1>
+                            <p class="Paragraph-luxe-2">Premium Villas with Superlative Experience</p>
+                        </div>
+                        <div class="col-12 col-lg-3 shadow bg-luxe">
+                            <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710486600/luxe_villa_va4wym.avif" class="image-luxe" />
+                            <h1 class="headline-luxe-1">Luxe International</h1>
+                            <p class="Paragraph-luxe-2">Dubai, Maldives, Thailand & More</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Plane-page ml-auto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469085/Common-Desktop-TKS-11Mar_nzcsni.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Grab Upto 50% OFF*
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            on flights, hotels & homestays, holidays, buses, cabs more for summer-tastic trips!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469229/DF-Desktop-TKS-11Mar_cxuo5k.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Grab FLAT 15% OFF*
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            on Domestic Flights for Summer-tastic Trips!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469220/offer-11032024_i0ayyt.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Grab Up to 35% OFF* + Additional Savings on EMI
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            on flights, hotels and holiday packages for pocket-friendly travel bookings.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        VIEW DETAILS
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469266/116X116-axis-29022024_vs4yfx.webp" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            FOR HASSLE-FREE TRIPS WITH MAX SAVINGS:
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            Grab Up to 15% OFF* + Additional Savings on EMI for flights and hotels.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        VIEW DETAILS
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710474179/116X116-treebo-31082023_tbcnfp.webp" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Grab FLAT 12% OFF* on Treebo Hotels
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            for comfortable in Summer stays.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710486814/Homestays-Desktop-TKS-11Mar_zczzr4.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Grab Up to 50% OFF
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            on Homestays & Villas in India for Summer-tastic Trips!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710487002/ih-luxe-116x116-27042023_tskmga.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Ultra-Premium Stays, Only for You!
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            Explore Luxe International for Handpicked Stays with Signature Services
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="shadow menu-item-card p-3 mb-3">
+                                <div class="d-flex flex-direction-row">
+                                    <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710487371/Desktop-Oberoi-210623_xqjbeg.avif" class="image w-70" />
+                                    <div>
+                                        <h1 class="heading">
+                                            Worry-Free Stays Assured at TOP-RATED Affordable
+                                        </h1>
+                                        <span class="redBdr appendBottom10"></span>
+                                        <p class="Paragraph">
+                                            Or get 100% Money Back. Book now @ Up to 30% OFF*.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="buttom-section">
+                                    <a href="" class="menu-item-link">
+                                        BOOK NOW
+                                        <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Holiday section -->
+
+            <div>
+                <div class="content">
+                    <div class=row>
+                        <div>
+                            <h1 class="best-heading">
+                                Best Selling Destinations
+                            </h1>
+                            <div class="d-flex flex-column align-content-center col-lg-6 col-12">
+                                <div class="best-selling-bg">
+                                    <h1 class="best-selling-bg-heading">Goa</h1>
+                                    <p class="best-selling-bg-paragraph">Starting at $5000 Per person</p>
+                                </div>
+                                <div class="best-selling-bg-1">
+                                    <h1 class="best-selling-bg-heading">Himachal</h1>
+                                    <p class="best-selling-bg-paragraph">Starting at $1000 Per person</p>
+                                </div>
+                                <div class="best-selling-bg-2">
+                                    <h1 class="best-selling-bg-heading">Thailand</h1>
+                                    <p class="best-selling-bg-paragraph">Starting at $6000 Per person</p>
+                                </div>
+                                <div class="best-selling-bg-3">
+                                    <h1 class="best-selling-bg-heading">Kashmir</h1>
+                                    <p class="best-selling-bg-paragraph">Starting at $4000 Per person</p>
+                                </div>
+                                <div class="best-selling-bg-4">
+                                    <h1 class="best-selling-bg-heading">Kerala</h1>
+                                    <p class="best-selling-bg-paragraph">Starting at $4500 Per person</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Last section -->
+
+            <div class="container">
+                <ul class="flex-container">
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492279/GoaDT_dzxhid.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">GOA</h1>
+                            <p class="li-paragraph">Villas, North Goa, Hotels, Budget Hotels, Resorts, Best Hotels</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492274/50x50-Ooty-23052019_zbdw6q.webp" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Ooty</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, Resorts, Cotteges, HomeStay</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492274/JaipurDT_oonxn3.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Jaipur</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, Resorts, Best Houses, Near Raliway Station</p>
+                        </div>
+                    </li>
+                    <!-- Add more list items here -->
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492275/popular_area_eoo6c9.jpg" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Singapore</h1>
+                            <p class="li-paragraph">Hotels, 5 Star Hotels, Little India, Orchard Road, Hostela</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492275/shutterstock_389416630_lh8gl2.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Phuket</h1>
+                            <p class="li-paragraph">Hotels Resorts, Budget Hotels, Beachfront Properties</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/50x50-Other-23052019_v6yjs2.webp" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Others</h1>
+                            <p class="li-paragraph">Puri Hotels, OYO Delhi, Alleppey Houseboat, Mahabaleshwar Hotels</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/DelhiDT_hn3lbn.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Delhi</h1>
+                            <p class="li-paragraph">Puri Hotels, OYO Delhi, Alleppey Houseboat, Mahabaleshwar Hotels</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492272/MumbaiDT_qtqmgn.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Mumbai</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, Resorts, Couple Hotels, Near Mumbai Air Port</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492272/50x50-Manali-23052019_dyhull.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Manali</h1>
+                            <p class="li-paragraph">Hotels, Resorts, Budget Hotels, Best Hotels, Near Mall Road</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492274/shutterstock_701150233_ktdoeu.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Bangkok</h1>
+                            <p class="li-paragraph">Hotels, 3 Star Hotels, 5 Star Hotels, Hostels, Budget Hotels, Hotels in Sukhumvit</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/shutterstock_1306548694_cs6o7k.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Bali</h1>
+                            <p class="li-paragraph">Hotels, Resorts, 5 Star Hotels, Budget Hotels, Villas In Bali, Beach-front Properties</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/BangaloreDT_p3oqig.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Bangalore</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, Resorts, Near Air Port, Guhantara Resort</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/50x50-Shimla-23052019_garupv.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Shimla</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, Best Hotels, Resorts, Near Mall Road</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/shutterstock_1892460739_qb2qzi.avif" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Dubai</h1>
+                            <p class="li-paragraph">Hotels, Budget Hotels, 5 Star Hotels, Homestays, Apart-Hotels</p>
+                        </div>
+                    </li>
+                    <li class="flex-item">
+                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710492273/shutterstock_1901686090_dnxzqi.webp" class="li-image" />
+                        <div>
+                            <h1 class="li-headline">Maldives</h1>
+                            <p class="li-paragraph">Hotels, 3 Star Hotels, 4 Star Hotels, 5 Star Hotels, Resorts</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+        </section>
+        <section id="train-section" class="section">
+            <h2>Trains</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="source">Source</label>
+                        <input type="text" class="form-control" id="source" placeholder="Enter Source">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="destination">Destination</label>
+                        <input type="text" class="form-control" id="destination" placeholder="Enter Destination">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="date">Date of Trip</label>
+                        <input type="text" class="form-control datepicker" id="date" placeholder="Select Date">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search Trains</button>
+            </form>
+            <!-- Content for Trains goes here -->
+
+            <div id="Flight-page">
+                <div class="Plane-page ml-auto">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469085/Common-Desktop-TKS-11Mar_nzcsni.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Upto 50% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels & homestays, holidays, buses, cabs more for summer-tastic trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469229/DF-Desktop-TKS-11Mar_cxuo5k.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 15% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on Domestic Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469237/IF-Desktop-TKS-11Mar_z2fv7q.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 12% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on International Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469220/offer-11032024_i0ayyt.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Up to 35% OFF* + Additional Savings on EMI
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels and holiday packages for pocket-friendly travel bookings.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500279/Desktop-Train-FestiveCalendar-22Nov_kfuaw3.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                BOOKINGS ARE OPEN NOW!
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Plan Your Next Train Journey for the upcoming long weekends
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469266/116X116-axis-29022024_vs4yfx.webp" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                FOR HASSLE-FREE TRIPS WITH MAX SAVINGS:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Grab Up to 15% OFF* + Additional Savings on EMI for flights and hotels.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500278/train04-116x116-06012021_cfkldk.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Trip Guarantee on Trains!
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Waitlisted tickets no more. Get a confirmed ticket or a free upgrade to flights, cabs & more.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500279/Desktop-Ayodhya-28Dec_amelby.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                AYODHYA SPECIAL:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Enjoy EPIC Offers on booking buses, cabs & trains with us
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <section id="cab-section" class="section">
+            <h2>Cabs</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cab-source">Source</label>
+                        <input type="text" class="form-control" id="cab-source" placeholder="Enter Source">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cab-destination">Destination</label>
+                        <input type="text" class="form-control" id="cab-destination" placeholder="Enter Destination">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search Cabs</button>
+            </form>
+
+            <div id="Flight-page">
+                <div class="Plane-page ml-auto">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469085/Common-Desktop-TKS-11Mar_nzcsni.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Upto 50% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels & homestays, holidays, buses, cabs more for summer-tastic trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469229/DF-Desktop-TKS-11Mar_cxuo5k.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 15% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on Domestic Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469237/IF-Desktop-TKS-11Mar_z2fv7q.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab FLAT 12% OFF*
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on International Flights for Summer-tastic Trips!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469220/offer-11032024_i0ayyt.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Grab Up to 35% OFF* + Additional Savings on EMI
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                on flights, hotels and holiday packages for pocket-friendly travel bookings.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500279/Desktop-Train-FestiveCalendar-22Nov_kfuaw3.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                BOOKINGS ARE OPEN NOW!
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Plan Your Next Train Journey for the upcoming long weekends
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710469266/116X116-axis-29022024_vs4yfx.webp" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                FOR HASSLE-FREE TRIPS WITH MAX SAVINGS:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Grab Up to 15% OFF* + Additional Savings on EMI for flights and hotels.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500278/train04-116x116-06012021_cfkldk.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                Trip Guarantee on Trains!
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Waitlisted tickets no more. Get a confirmed ticket or a free upgrade to flights, cabs & more.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            VIEW DETAILS
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="shadow menu-item-card p-3 mb-3">
+                                    <div class="d-flex flex-direction-row">
+                                        <img src="https://res.cloudinary.com/dqxhly5zd/image/upload/v1710500279/Desktop-Ayodhya-28Dec_amelby.avif" class="image w-70" />
+                                        <div>
+                                            <h1 class="heading">
+                                                AYODHYA SPECIAL:
+                                            </h1>
+                                            <span class="redBdr appendBottom10"></span>
+                                            <p class="Paragraph">
+                                                Enjoy EPIC Offers on booking buses, cabs & trains with us
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buttom-section">
+                                        <a href="" class="menu-item-link">
+                                            BOOK NOW
+                                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+
+        // Show only the clicked section and hide others
+        $('.navbar-nav .nav-link').click(function(e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+            $('.section').removeClass('active');
+            $(target).addClass('active');
+        });
+    </script>
+</body>
+
+</html>
